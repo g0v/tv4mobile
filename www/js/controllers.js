@@ -1,6 +1,5 @@
 angular.module('starter.controllers', [])
 
-
 .controller('PetIndexCtrl', function($scope, PetService) {
   $scope.pets = PetService.all();
 })
@@ -20,4 +19,10 @@ angular.module('starter.controllers', [])
   $scope.toggleMenu = function () {
     $ionicSideMenuDelegate.toggleLeft($scope.$$childHead);
   }
+})
+
+.controller('LiveTextCtrl', function( IrcTextService, $scope) {
+    IrcTextService.async().then(function(d) {
+      $scope.data = d;
+    });
 });

@@ -36,6 +36,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       views: {
         'text-tab': {
           templateUrl: 'templates/live_text.html',
+          controller: 'LiveTextCtrl'
         }
       }
     })

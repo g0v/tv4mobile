@@ -23,4 +23,18 @@ angular.module('starter.services', [])
       return pets[petId];
     }
   }
+}).factory('IrcTextService', function($http) {
+  var promise;
+  var IrcText = {
+    async: function() {
+      if ( !promise ) {
+        promise = $http.get('http://congress-text-live.herokuapp.com/json/').then(function (response) {
+          console.log(response);
+          return response.data;
+        });
+      }
+      return promise;
+    }
+  };
+  return IrcText;
 });
