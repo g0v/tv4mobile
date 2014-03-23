@@ -25,4 +25,15 @@ angular.module('starter.controllers', [])
     IrcTextService.async().then(function(d) {
       $scope.data = d;
     });
+
+    $scope.rightButtons = [
+      {
+        content: '<i class="icon ion-loop"></i>',
+        tap: function(e) {
+          IrcTextService.async().then(function(d) {
+            $scope.data = d;
+          });
+        }
+      }
+    ];
 });
