@@ -23,14 +23,19 @@ angular.module('starter.services', [])
       return pets[petId];
     }
   }
-}).factory('IrcTextService', function($http) {
+})
+
+.factory('IrcTextService', function($http) {
   var promise;
   var IrcText = {
     async: function() {
       if ( !promise ) {
         promise = $http.get('http://congress-text-live.herokuapp.com/json/').then(function (response) {
-          console.log(response);
-          return response.data;
+          return response.data.latest.sort(function(x, y){
+            var x_time = x.time.split(':');
+            var y_time = y.time.split(':');
+            return (parseInt(y_time[0], 10) * 60 + parseInt(y_time[1], 10)) - (parseInt(x_time[0], 10) * 60 + parseInt(x_time[1], 10));
+          });
         });
       }
       return promise;
